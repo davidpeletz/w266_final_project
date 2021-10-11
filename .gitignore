@@ -1,0 +1,6 @@
+# Default ignored files
+/workspace.xml
+venv/
+**/.DS_Store
+data/
+.idea/

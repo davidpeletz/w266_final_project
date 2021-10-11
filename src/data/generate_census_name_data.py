@@ -25,7 +25,7 @@ def get_black_df():
 
 
 def get_white_df():
-    global URL, r, df_list, white_df
+    global URL, r, df_list, white_dfopenpyxl
     URL = "https://namecensus.com/data/white.html"
     r = requests.get(URL)
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
@@ -156,7 +156,7 @@ whole_last_name_df = pd.concat(df_list).reset_index(drop=True)
 
 whole_last_name_df.to_csv("../../data/interim/whole_last_name_df.csv")
 
-# TODO: fix the reading in of firstname data
-# fn_df = pd.read_excel(io.BytesIO("../../data/raw/firstnames.xlsx"), sheet_name="Data")
-# fn_df = fn_df[:-1]
-# fn_df.to_csv
+fn_df = pd.read_excel("../../data/raw/firstnames.xlsx", sheet_name="Data")
+fn_df = fn_df[:-1]
+fn_df.to_csv("../../data/interim/first_name_df.csv")
+
