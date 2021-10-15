@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import io
 
+
 def get_black_df():
     global URL, r, df_list, black_df
     URL = "https://namecensus.com/data/black.html"
@@ -156,7 +157,15 @@ whole_last_name_df = pd.concat(df_list).reset_index(drop=True)
 
 whole_last_name_df.to_csv("../../data/interim/whole_last_name_df.csv")
 
+rt_last_name_list = aggregate_data(
+    [get_black_df(), get_hispanic_df(), get_aapi_df()], threshold=-1)
+last_names = list(whole_last_name_df["Last name / Surname"])
+
+rt_df = pd.concat(rt_last_name_list).reset_index(drop=True)
+rt_df = rt_df.loc[(~rt_df["Last name / Surname"].isin(last_names)) & (
+        rt_df["% of people with surname self-identifying as given race"] >= 40)].reset_index(drop=True)
+rt_df.to_csv("../../data/interim/retrain_ln_df.csv")
+
 fn_df = pd.read_excel("../../data/raw/firstnames.xlsx", sheet_name="Data")
 fn_df = fn_df[:-1]
 fn_df.to_csv("../../data/interim/first_name_df.csv")
-

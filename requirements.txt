@@ -13,3 +13,4 @@ pandas
 io
 flair
 transformers
+timeit
