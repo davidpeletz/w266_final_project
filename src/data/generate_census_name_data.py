@@ -3,10 +3,12 @@ import pandas as pd
 import io
 
 
+
 def get_black_df():
     global URL, r, df_list, black_df
     URL = "https://namecensus.com/data/black.html"
     r = requests.get(URL)
+
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
     black_df = df_list[0]
     black_df.columns = black_df.iloc[0]
@@ -29,6 +31,7 @@ def get_white_df():
     global URL, r, df_list, white_dfopenpyxl
     URL = "https://namecensus.com/data/white.html"
     r = requests.get(URL)
+
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
     white_df = df_list[0]
     white_df.columns = white_df.iloc[0]
@@ -53,6 +56,7 @@ def get_hispanic_df():
     global URL, r, df_list, hispanic_df
     URL = "https://namecensus.com/data/hispanic.html"
     r = requests.get(URL)
+
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
     hispanic_df = df_list[0]
     hispanic_df.columns = hispanic_df.iloc[0]
@@ -77,6 +81,7 @@ def get_aapi_df():
     global URL, r, df_list, aapi_df
     URL = "https://namecensus.com/data/asian_pacific_islander.html"
     r = requests.get(URL)
+
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
     aapi_df = df_list[0]
     aapi_df.columns = aapi_df.iloc[0]
@@ -100,6 +105,7 @@ def get_indian_df():
     global URL, r, df_list, indian_df
     URL = "https://namecensus.com/data/indians.html"
     r = requests.get(URL)
+
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
     indian_df = df_list[0]
     indian_df.columns = indian_df.iloc[0]
@@ -126,6 +132,7 @@ def get_multi_race_df():
     global URL, r, df_list
     URL = "https://namecensus.com/data/two_race.html"
     r = requests.get(URL)
+
     df_list = pd.read_html(r.text)  # this parses all the tables in webpages to a list
     multi_race_df = df_list[0]
     multi_race_df.columns = multi_race_df.iloc[0]
