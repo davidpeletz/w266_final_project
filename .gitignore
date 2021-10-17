@@ -2,5 +2,8 @@
 /workspace.xml
 venv/
 **/.DS_Store
-data/
+data/interim
+data/raw
+data/external
+data/processed
 .idea/
