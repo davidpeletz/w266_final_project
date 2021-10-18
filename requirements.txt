@@ -17,3 +17,4 @@ timeit
 progressbar
 time
 nerda
+seqeval

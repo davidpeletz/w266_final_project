@@ -118,8 +118,8 @@ def form_whole_df():
 
     rt_fabricated_df = rt_copy_df.copy()
     rt_fabricated_df["Name"] = rt_fabricated_df["Name"].apply(lambda x: str(x) + " went to the store.")
-    # rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
-    rt_final_df = rt_total_df.copy()
+    rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
+    # rt_final_df = rt_total_df.copy()
     print(rt_final_df.shape)
     print(rt_final_df["Race"].value_counts())
     rt_final_df.to_csv("../../data/interim/retrain_processed.csv")
