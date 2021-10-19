@@ -3,7 +3,6 @@ import pandas as pd
 import io
 
 
-
 def get_black_df():
     global URL, r, df_list, black_df
     URL = "https://namecensus.com/data/black.html"

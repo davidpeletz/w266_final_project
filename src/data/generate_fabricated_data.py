@@ -31,11 +31,6 @@ def get_first_names(input_df):
     hispanic_fn = input_df.sort_values(by=["pcthispanic", "obs"], ascending=False).loc[
                       input_df["obs"] > 1000][
                   :20]
-    # CODE BELOW EXCLUDES SOME FIRST NAMES SO THAT WE DON'T HAVE DUPLICATE FIRST AND LAST NAME IN DATA FOR GIVEN RACE
-    # api_fn = input_df.sort_values(by=["pctapi", "obs"], ascending=False).loc[
-    #              (input_df["obs"] > 200) & (~input_df["firstname"].isin(["Li", "Yu", "Jin", "Phuong"]))][:20]
-    # black_fn = input_df.sort_values(by=["pctblack", "obs"], ascending=False).loc[
-    #                (input_df["obs"] > 25) & (input_df["firstname"] != "Ivory")][:20]
 
     api_fn = input_df.sort_values(by=["pctapi", "obs"], ascending=False).loc[
                  input_df["obs"] > 200][:20]
@@ -118,8 +113,8 @@ def form_whole_df():
 
     rt_fabricated_df = rt_copy_df.copy()
     rt_fabricated_df["Name"] = rt_fabricated_df["Name"].apply(lambda x: str(x) + " went to the store.")
-    rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
-    # rt_final_df = rt_total_df.copy()
+    # rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
+    rt_final_df = rt_total_df.copy().drop_duplicates().reset_index(drop=True)
     print(rt_final_df.shape)
     print(rt_final_df["Race"].value_counts())
     rt_final_df.to_csv("../../data/interim/retrain_processed.csv")
