@@ -108,13 +108,14 @@ def form_whole_df():
                              rt_total_black_df,
                              rt_total_api_df]).reset_index(drop=True)
     rt_copy_df = rt_whole_df.copy()
+
     rt_copy_df["Name"] = rt_copy_df["Name"].apply(lambda x: str(x).lower())
     rt_total_df = pd.concat([rt_whole_df, rt_copy_df]).drop_duplicates().reset_index(drop=True)
 
     rt_fabricated_df = rt_copy_df.copy()
     rt_fabricated_df["Name"] = rt_fabricated_df["Name"].apply(lambda x: str(x) + " went to the store.")
-    # rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
-    rt_final_df = rt_total_df.copy().drop_duplicates().reset_index(drop=True)
+    rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
+    # rt_final_df = rt_total_df.copy().drop_duplicates().reset_index(drop=True)
     print(rt_final_df.shape)
     print(rt_final_df["Race"].value_counts())
     rt_final_df.to_csv("../../data/interim/retrain_processed.csv")
@@ -123,15 +124,16 @@ def form_whole_df():
     total_api_df = form_df(api_fn_list, api_ln_list, api_full_names, "API")
     total_white_df = form_df(white_fn_list, white_ln_list, white_full_names, "White")
     total_black_df = form_df(black_fn_list, black_ln_list, black_full_names, "Black")
+
     whole_df = pd.concat([total_white_df,
                           total_black_df,
                           total_api_df,
                           total_hispanic_df]).reset_index(drop=True)
     another_df = whole_df.copy()
+
     another_df["Name"] = another_df["Name"].apply(lambda x: str(x).lower())
     total_df = pd.concat([whole_df, another_df]).drop_duplicates().reset_index(drop=True)
-
-    fabricated_df = another_df.copy()
+    fabricated_df = total_df.copy()
     fabricated_df["Name"] = fabricated_df["Name"].apply(lambda x: str(x) + " went to the store.")
     final_df = pd.concat([total_df, fabricated_df]).drop_duplicates().reset_index(drop=True)
     print(final_df.shape)
