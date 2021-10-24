@@ -18,3 +18,8 @@ progressbar
 time
 nerda
 seqeval
+unicodedata
+ast
+spacy
+np
+torch
