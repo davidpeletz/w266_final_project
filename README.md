@@ -1,7 +1,16 @@
 w266_final_project
 ==============================
 
-A short description of the project.
+In this project, we implemented two state-of-the-art NER models (LUKE and Flair) and assessed their performance at identifying names of various races. 
+
+To run the project: 
+1. Download firstnames.xlsx file from Harvard Dataverse (https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/TYJKEZ&version=1.3) and put file into data/raw/ directory. 
+2. Install all libraries listed in the requirements.txt file. 
+3. Run `generate_census_name_data.py` file in **src/data/** directory. 
+4. Run `generate_fabricated_data.py` file in **src/data/** directory. 
+5. Evaluate and/or fine-tune models by running any of the following .ipynb notebooks: `flair_baseline_model_evaluation.ipynb`, `luke_baseline_model_evaluation.ipynb`, and `custom_luke_model.ipynb`. The first two notebooks are located in the **notebooks/baseline_models/** directory. The `custom_luke_model.ipynb` notebook is located in the **notebooks/custom_models/** directory. 
+
+
 
 Project Organization
 ------------
