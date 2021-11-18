@@ -112,13 +112,19 @@ def form_whole_df():
     rt_copy_df["Name"] = rt_copy_df["Name"].apply(lambda x: str(x).lower())
     rt_total_df = pd.concat([rt_whole_df, rt_copy_df]).drop_duplicates().reset_index(drop=True)
 
+    updated_rt_df = rt_copy_df.copy()
+    updated_rt_df["Name"] = updated_rt_df["Name"].apply(
+        lambda x: "I went to pick " + str(x) + " up at the train station.")
+
     rt_fabricated_df = rt_copy_df.copy()
     rt_fabricated_df["Name"] = rt_fabricated_df["Name"].apply(lambda x: str(x) + " went to the store.")
+
     rt_final_df = pd.concat([rt_total_df, rt_fabricated_df]).drop_duplicates().reset_index(drop=True)
-    # rt_final_df = rt_total_df.copy().drop_duplicates().reset_index(drop=True)
     print(rt_final_df.shape)
     print(rt_final_df["Race"].value_counts())
     rt_final_df.to_csv("../../data/interim/retrain_processed.csv")
+
+    total_name_list = list(rt_whole_df["Name"])
 
     total_hispanic_df = form_df(hispanic_fn_list, hispanic_ln_list, hispanic_full_names, "Hispanic")
     total_api_df = form_df(api_fn_list, api_ln_list, api_full_names, "API")
@@ -129,6 +135,7 @@ def form_whole_df():
                           total_black_df,
                           total_api_df,
                           total_hispanic_df]).reset_index(drop=True)
+    whole_df = whole_df.loc[~whole_df["Name"].isin(total_name_list)]
     another_df = whole_df.copy()
 
     another_df["Name"] = another_df["Name"].apply(lambda x: str(x).lower())
