@@ -3,6 +3,8 @@ Assessing Racial Bias in Identification of Name Entities
 
 In this project, we implemented two state-of-the-art NER models (LUKE and Flair) and assessed their performance at identifying names of various races. 
 
+The PDF report is titled "Project_Report.pdf". 
+
 To run the project: 
 1. Download firstnames.xlsx file from Harvard Dataverse (https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/TYJKEZ&version=1.3) and put file into data/raw/ directory. 
 2. Install all libraries listed in the requirements.txt file. 
