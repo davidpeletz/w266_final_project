@@ -1,4 +1,4 @@
-w266_final_project
+Assessing Racial Bias in Identification of Name Entities
 ==============================
 
 In this project, we implemented two state-of-the-art NER models (LUKE and Flair) and assessed their performance at identifying names of various races. 
